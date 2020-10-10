@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+for file in ${1#/}*; do
+    echo "Analyzing '$(basename "$file")'"
+    #echo "${file%.*}.json"
+    ./emotions "$file" -f 30 > "${file%.*}.json"
+    echo "Done"
+done
+
+#./emotion

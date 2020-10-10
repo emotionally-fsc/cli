@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="EmotionAnalysis" pattern="file[emotions]:src//*" />
+</component>
