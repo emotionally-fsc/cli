@@ -115,18 +115,12 @@ PlottingImageListener::printFeatures(rapidjson::Document &document, float *featu
 
 void PlottingImageListener::addResult(const std::map <FaceId, Face> &faces, const double timeStamp)
 {
+    auto &allocator = document.GetAllocator();
     rapidjson::Value v;
     v.SetObject();
-    // if (faces.empty())
-    // {
-    //     fStream << timeStamp << ",nan,nan,no,unknown,unknown,unknown,unknown,";
-    //     for (std::string angle : viz.HEAD_ANGLES) fStream << "nan,";
-    //     for (std::string emotion : viz.EMOTIONS) fStream << "nan,";
-    //     for (std::string expression : viz.EXPRESSIONS) fStream << "nan,";
-    //     for (std::string emoji : viz.EMOJIS) fStream << "nan,";
-    //     fStream << std::endl;
-    // }
-    auto &allocator = document.GetAllocator();
+
+    v.AddMember("timestamp", rapidjson::Value(timeStamp).Move(), allocator);
+
     // NOTE: To save all faces, decomment this 'for' (and comment the 'if') and
     // change the definition of f (see the comment), alongside with the
     // structure of the JSON 
