@@ -48,6 +48,7 @@
  * \author Andrea Esposito <[github.com/espositoandrea](https://github.com/espositoandrea)>
  */
 #include <iostream>
+#include <cstdlib>
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/core/core.hpp>
@@ -75,7 +76,7 @@
 int main(int argc, char **argv)
 {
     std::string video;
-    std::string affdex_classifier_path = "lib/affdex-sdk/data/";
+    std::string affdex_classifier_path = std::getenv("AFFDEX_DATA") ? std::getenv("AFFDEX_DATA") : "lib/affdex-sdk/data/";
     unsigned int process_framerate = 30;
     const exit_codes result = setup_options(argc, argv, video, process_framerate, affdex_classifier_path);
     if (result != exit_codes::OK) return static_cast<int>(result);
